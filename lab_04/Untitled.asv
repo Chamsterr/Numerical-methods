@@ -1,8 +1,7 @@
 a = [0, 1, 2, 3; 
-    2, 0, 1, 0
-    1, 3 ,0, 1; 
-    0, 0, 0, 0;];
-
+    0, 0, 0, 0
+    0, 3 ,2, 1; 
+    0, 0, 0, 3;];
 b = [1; 2; 5; 3];
 
 n = 4;
@@ -17,11 +16,7 @@ if a_b == 0
     disp("Нет решений");
     return
 end
-answer = Gaus(a_b, n);
-disp(answer)
-disp(b)
-disp(a*transpose(answer))
-
+disp(Gaus(a_b, n))
 % disp(Reverse_matrix(a_e, b, n))
 function check_matrix_answer = Check_matrix(a_b, n)
 counter=0;
@@ -35,7 +30,7 @@ c_col_zero = zeros(n, 1);
             end
         end
         for col = 1:n
-            if a_b(:, col) == c_col_zero
+            if a_b(row, 1:end-1) == c_row_zero
                 check_matrix_answer = 0;
                 return 
             end
@@ -43,13 +38,11 @@ c_col_zero = zeros(n, 1);
         for col = 1:n
             for row = 1:1:n
                  if a_b(col,col) == 0
-                     if col > 2;
-                        row = row + 1;
-                     end
+                     row = row + 1;
                      counter = counter + 1;
-                    a_b_copy = a_b(row + 1,:)
-                    a_b((row + 1),:)= a_b(row, :)
-                    a_b(row, :) = a_b_copy
+                    a_b_copy = a_b(row + 1,:);
+                    a_b((row + 1),:)= a_b(row, :);
+                    a_b(row, :) = a_b_copy;
                     if(counter == n*2)
                         return
                     end
