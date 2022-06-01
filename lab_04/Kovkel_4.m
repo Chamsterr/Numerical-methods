@@ -17,8 +17,10 @@ if a_b == 0
     disp("Нет решений");
     return
 end
+
 answer = Gaus(a_b, n);
 disp(answer)
+% Для проверки ответа
 disp(b)
 disp(a*transpose(answer))
 
